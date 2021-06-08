@@ -1,0 +1,5 @@
+# Python 3.9
+rich==9.12.3
+OmegaConf==2.0.6
+# fastapi==0.63.0
+# uvicorn[standard]==0.13.4
