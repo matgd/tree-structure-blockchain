@@ -63,6 +63,7 @@ class Blockchain:
     def __mark_participant_as_deleted(participant: Participant) -> None:
         # Here could be additional instructions for cleaning participant's data
         participant.name = f"{participant.name}'"
+        participant.deleted = True
 
     def append_block(self, block: Block, participants: Union[tuple[Participant], tuple],
                      previous_block_hash: str) -> bool:
@@ -103,8 +104,10 @@ class Blockchain:
                     self.participants_pending_transactions.pop(chain_key)
                 return True
             elif self.variation == BlockchainVariation.REFERENCE:
-                self.participants_chains.pop((participant_to_leave,))
                 self.__mark_participant_as_deleted(participant_to_leave)
+                for chain_key in related_chain_keys:
+                    if all((participant.deleted for participant in chain_key)):
+                        self.participants_chains.pop(chain_key)
                 return True
 
     def mine(self, participants: Union[tuple[Participant], tuple],
