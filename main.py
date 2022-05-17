@@ -41,6 +41,10 @@ def parse_instructions(instructions: ListConfig, blockchain: Blockchain, partici
             print(blockchain.participants_chains)
             print()
 
+        if 'blockchain' in instruction.get('show-length', ''):
+            logging.info(f'Chains ({len(blockchain.participants_chains)})')
+            print()
+
         elif tx_data := instruction.get('transaction', {}).get('create'):
             logging.info(f'Adding transaction "{tx_data.message}"... {tx_data.participants}')
             references_tuples = None

@@ -107,7 +107,8 @@ class Blockchain:
                 self.__mark_participant_as_deleted(participant_to_leave)
                 for chain_key in related_chain_keys:
                     if all((participant.deleted for participant in chain_key)):
-                        self.participants_chains.pop(chain_key)
+                        with MeasureTime(f'DELETE_CHAIN_{str(chain_key).replace(",", "_")}'):
+                            self.participants_chains.pop(chain_key)
                 return True
 
     def mine(self, participants: Union[tuple[Participant], tuple],
