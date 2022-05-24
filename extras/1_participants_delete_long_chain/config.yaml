@@ -1,0 +1,22 @@
+variation: REFERENCE # {NONE, REFERENCE}
+
+participants:
+  initial:
+    - A
+
+flow:
+  - transaction:
+      create:
+        message: Information about A
+        participants:
+          - A
+              
+  - block:
+      mine:
+        times: 0
+        block_participants:
+          - A
+
+  - delete:
+      chain:
+        participant: A
