@@ -1,0 +1,41 @@
+variation: REFERENCE # {NONE, REFERENCE}
+
+participants:
+  initial:
+    - A
+    - B
+    - C
+
+flow:
+  - transaction:
+      create:
+        message: Crucial information about B for transaction in A, B
+        participants:
+          - B
+  - block:
+      mine:
+        block_participants:
+          - B
+  - transaction:
+      create:
+        message: Agreement between A, B with reaching to B's data
+        participants:
+          - A
+          - B
+        references:
+          - name: Personal data of B
+            participant: B
+            block_index: 1
+            transaction_index: 1
+  - block:
+      mine:
+        block_participants:
+          - A
+          - B
+  - show:
+    - blockchain
+  - delete:
+      chain:
+        participant: B
+  - show:
+    - blockchain
