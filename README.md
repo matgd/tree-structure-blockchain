@@ -1,7 +1,6 @@
 # Reference-based Tree Structure (RBTS) Blockchain
 
-***The following content is copied from my Master Thesis.  
-The links to cited content can be found in the thesis itself.***
+***For more details check research paper.***
 
 ## Docker image
 
